@@ -20,6 +20,7 @@ namespace DDDPractice
             StartPosition = FormStartPosition.CenterScreen;
         }
 
+
         private void LatestButton_Click(object sender, EventArgs e)
         {
             string sql = @"select DataDate
