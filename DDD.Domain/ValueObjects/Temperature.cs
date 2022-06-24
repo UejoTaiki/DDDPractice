@@ -6,7 +6,6 @@ namespace DDD.Domain.ValueObjects
     public sealed class Temperature
     {
         public const string UnitName = "℃";
-
         public const int DecimalPoint = 2;
 
         public Temperature(float value)
@@ -20,6 +19,12 @@ namespace DDD.Domain.ValueObjects
             {
                 return CommonFunc.RoundString(Value, DecimalPoint) + UnitName;
             }
+        }
+        public override bool Equals(object obj)
+        {
+            var vo = obj as Temperature;
+            if (vo == null) return false;
+            return vo.Value == this.Value;
         }
     }
 }
