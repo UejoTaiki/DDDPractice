@@ -1,4 +1,5 @@
 ﻿using DDD.Domain.Repositories;
+using DDD.Infrastructure.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ namespace DDDPractice.ViewModels
     public class WeatherLatestViewModel
     {
         private IWeatherRepository _weather;
+
+        public WeatherLatestViewModel()
+            : this(new WeatherSQLite())
+        {
+        }
 
         public WeatherLatestViewModel(IWeatherRepository weather)
         {

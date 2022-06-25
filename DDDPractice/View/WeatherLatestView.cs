@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDDPractice.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace DDDPractice
 {
     public partial class WeatherLatestView : Form
     {
-        private readonly string ConnectionString = @"Data Source=C:\Users\b21a0145\Desktop\DDD.db;Version=3";
+        private WeatherLatestViewModel viewModel = new WeatherLatestViewModel();
 
         public WeatherLatestView()
         {
@@ -20,17 +21,9 @@ namespace DDDPractice
             StartPosition = FormStartPosition.CenterScreen;
         }
 
-
         private void LatestButton_Click(object sender, EventArgs e)
         {
-            string sql = @"select DataDate
-                                  Condition
-                                  Temperature
-                                  from Weather
-                                  where AreaId = @AreaId
-                                  order by DataDate desc
-                                  LIMIT 1
-                          ";
+            
         }
     }
 }
