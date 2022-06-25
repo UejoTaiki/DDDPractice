@@ -18,14 +18,14 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return CommonFunc.RoundString(Value, DecimalPoint);
+                return FloatHelper.RoundString(Value, DecimalPoint);
             }
         }
         public string DisplayValueWithUnit
         {
             get
             {
-                return CommonFunc.RoundString(Value, DecimalPoint) + UnitName;
+                return FloatHelper.RoundString(Value, DecimalPoint) + UnitName;
             }
         }
         public override bool Equals(object obj)

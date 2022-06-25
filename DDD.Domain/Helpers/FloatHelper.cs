@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DDDPractice.Common
 {
-    static class CommonFunc
+    public static class FloatHelper
     {
         public static String RoundString(float value, int decimalPoint)
         {
