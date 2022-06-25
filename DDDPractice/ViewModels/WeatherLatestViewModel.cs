@@ -28,7 +28,7 @@ namespace DDDPractice.ViewModels
             {
                 DataDateText = entity.DataDate.ToString();
                 ConditionText = entity.Condition.ToString();
-                TemperatureText = entity.Temperature.ToString();
+                TemperatureText = entity.Temperature.DisplayValueWithUnit;
             }
         }
     }
