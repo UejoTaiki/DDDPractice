@@ -3,7 +3,7 @@ using DDDPractice.Common;
 
 namespace DDD.Domain.ValueObjects
 {
-    public sealed class Temperature
+    public sealed class Temperature : ValueObject<Temperature>
     {
         public const string UnitName = "℃";
         public const int DecimalPoint = 2;
@@ -13,6 +13,7 @@ namespace DDD.Domain.ValueObjects
             Value = value;
         }
         public float Value { get; }
+
         public string DisplayValue
         {
             get
@@ -26,5 +27,13 @@ namespace DDD.Domain.ValueObjects
             if (vo == null) return false;
             return vo.Value == this.Value;
         }
+
+        protected override bool EqualsCore(Temperature other)
+        {
+            if(other.Value != this.Value) return false;
+            return true;
+        }
+
+
     }
 }
