@@ -1,4 +1,5 @@
-﻿using DDD.Domain.Repositories;
+﻿using DDD.Domain.Entities;
+using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,29 @@ namespace DDDPractice.ViewModels
     public class WeatherLatestViewModel : INotifyPropertyChanged
     {
         private IWeatherRepository _weather;
+        private IAreasRepository _areas;
 
         public WeatherLatestViewModel()
-            : this(new WeatherSQLite())
+            : this(new WeatherSQLite(), null)
         {
         }
 
-        public WeatherLatestViewModel(IWeatherRepository weather)
+        public WeatherLatestViewModel(IWeatherRepository weather, IAreasRepository areas)
         {
             _weather = weather;
+            _areas = areas;
+
+            foreach(var area in _areas.GetData())
+            {
+                Areas.Add(new AreaEntity(area.AreaId, area.AreaName));
+            }
         }
 
         public string AreaIdText { get; set; } = string.Empty;
         public string DataDateText { get; set; } = string.Empty;
         public string ConditionText { get; set; } = string.Empty;
         public string TemperatureText { get; set; } = string.Empty;
+        public BindingList<AreaEntity> Areas { get; set; } = new BindingList<AreaEntity>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
