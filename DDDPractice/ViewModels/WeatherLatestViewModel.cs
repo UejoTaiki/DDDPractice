@@ -2,13 +2,14 @@
 using DDD.Infrastructure.SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DDDPractice.ViewModels
 {
-    public class WeatherLatestViewModel
+    public class WeatherLatestViewModel : INotifyPropertyChanged
     {
         private IWeatherRepository _weather;
 
@@ -27,6 +28,8 @@ namespace DDDPractice.ViewModels
         public string ConditionText { get; set; } = string.Empty;
         public string TemperatureText { get; set; } = string.Empty;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void search()
         {
             var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
@@ -36,6 +39,14 @@ namespace DDDPractice.ViewModels
                 ConditionText = entity.Condition.DisplayValue;
                 TemperatureText = entity.Temperature.DisplayValueWithUnit;
             }
+
+            OnPropertyChanged("");
         }
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        
     }
 }
