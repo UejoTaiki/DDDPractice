@@ -35,10 +35,10 @@ namespace DDDTest.Tests
 
             viewModel.AreaIdText = "2";
             viewModel.search();
-            Assert.AreEqual("2", viewModel.AreaIdText);
-            Assert.AreEqual("2022/06/23 13:15:44", viewModel.DataDateText);
-            Assert.AreEqual("曇り", viewModel.ConditionText);
-            Assert.AreEqual("12.30℃", viewModel.TemperatureText);
+            viewModel.AreaIdText.Is("2");
+            viewModel.DataDateText.Is("2022/06/23 13:15:44");
+            viewModel.ConditionText.Is("曇り");
+            viewModel.TemperatureText.Is("12.30℃");
         }
     }
 
