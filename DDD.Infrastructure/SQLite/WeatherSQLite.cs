@@ -34,7 +34,6 @@ namespace DDD.Infrastructure.SQLite
             }
 
             return null;
-
         }
     }
 }

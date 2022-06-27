@@ -16,7 +16,7 @@ namespace DDDPractice.ViewModels
         private IAreasRepository _areas;
 
         public WeatherLatestViewModel()
-            : this(new WeatherSQLite(), null)
+            : this(new WeatherSQLite(), new AreasSQLite())
         {
         }
 
@@ -31,7 +31,7 @@ namespace DDDPractice.ViewModels
             }
         }
 
-        public string AreaIdText { get; set; } = string.Empty;
+        public object SelectedAreaId { get; set; }
         public string DataDateText { get; set; } = string.Empty;
         public string ConditionText { get; set; } = string.Empty;
         public string TemperatureText { get; set; } = string.Empty;
@@ -41,7 +41,7 @@ namespace DDDPractice.ViewModels
 
         public void search()
         {
-            var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
+            var entity = _weather.GetLatest(Convert.ToInt32(SelectedAreaId));
             if(entity != null)
             {
                 DataDateText = entity.DataDate.ToString();

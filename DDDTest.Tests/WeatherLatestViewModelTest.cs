@@ -24,11 +24,11 @@ namespace DDDTest.Tests
             areas.Add(new AreaEntity(2, "神戸"));
             var areasMock = new Mock<IAreasRepository>();
             areasMock.Setup(x => x.GetData())
-                .Returns(areas);
+                .Returns(areas); 
 
             var viewModel = new WeatherLatestViewModel(weatherMock.Object, areasMock.Object);
 
-            Assert.AreEqual("", viewModel.AreaIdText);
+            Assert.IsNull(viewModel.SelectedAreaId);
             Assert.AreEqual("", viewModel.DataDateText);
             Assert.AreEqual("", viewModel.ConditionText);
             Assert.AreEqual("", viewModel.TemperatureText);
@@ -36,22 +36,12 @@ namespace DDDTest.Tests
             viewModel.Areas[0].AreaId.Is(1);
             viewModel.Areas[0].AreaName.Is("東京");
 
-            viewModel.AreaIdText = "1";
+            viewModel.SelectedAreaId = 1;
             viewModel.search();
-            Assert.AreEqual("1", viewModel.AreaIdText);
+            Assert.AreEqual(1, viewModel.SelectedAreaId);
             Assert.AreEqual("2022/06/23 13:15:44", viewModel.DataDateText);
             Assert.AreEqual("曇り", viewModel.ConditionText);
             Assert.AreEqual("12.30℃", viewModel.TemperatureText);
-
-            //weatherMock.Setup(x => x.GetLatest(2)).
-            //    Returns(new WeatherEntity(2, Convert.ToDateTime("2022/06/23 13:15:44"), 2, 12.3f));
-
-            //viewModel.AreaIdText = "2";
-            //viewModel.search();
-            //viewModel.AreaIdText.Is("2");
-            //viewModel.DataDateText.Is("2022/06/23 13:15:44");
-            //viewModel.ConditionText.Is("曇り");
-            //viewModel.TemperatureText.Is("12.30℃");
         }
     }
 
